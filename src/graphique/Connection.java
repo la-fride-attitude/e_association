@@ -5,6 +5,14 @@
  */
 package graphique;
 
+import base_de_donnée.Param_de_connection;
+import base_de_donnée.BDD;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Frida
@@ -14,7 +22,12 @@ public class Connection extends javax.swing.JFrame {
     /**
      * Creates new form Connection
      */
+    ResultSet rs;
+    BDD db;
+    String username, password, statut;
+    
     public Connection() {
+        db = new BDD(new Param_de_connection().ADDRESS_DB, new Param_de_connection().USERNAME_DB,new Param_de_connection().PASSWORD_DB, new Param_de_connection().ADDRESS_DB, new Param_de_connection().PORT);
         initComponents();
     }
 
@@ -28,16 +41,24 @@ public class Connection extends javax.swing.JFrame {
     private void initComponents() {
 
         jMenu1 = new javax.swing.JMenu();
+        jLabel5 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jPasswordField1 = new javax.swing.JPasswordField();
+        txt_username = new javax.swing.JTextField();
+        txt_password = new javax.swing.JPasswordField();
         jButton1 = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
+        type = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
 
         jMenu1.setText("jMenu1");
+
+        jLabel5.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setText("Mot De Passe");
+        jLabel5.setPreferredSize(new java.awt.Dimension(40, 25));
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -45,7 +66,7 @@ public class Connection extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 3, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Page Connexion");
+        jLabel1.setText("Connexion");
         jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(169, 48, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
@@ -56,16 +77,35 @@ public class Connection extends javax.swing.JFrame {
 
         jLabel3.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("Mot De Pass");
+        jLabel3.setText("Mot De Passe");
         jLabel3.setPreferredSize(new java.awt.Dimension(40, 25));
         jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(78, 188, 123, -1));
-        jPanel2.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(267, 128, 132, -1));
-        jPanel2.add(jPasswordField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(267, 192, 132, -1));
+        jPanel2.add(txt_username, new org.netbeans.lib.awtextra.AbsoluteConstraints(267, 128, 132, -1));
+        jPanel2.add(txt_password, new org.netbeans.lib.awtextra.AbsoluteConstraints(267, 192, 132, -1));
 
         jButton1.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jButton1.setText("Connexion");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(191, 261, -1, -1));
 
+        jLabel6.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setText("Statut");
+        jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 320, 60, -1));
+
+        type.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "admin", "user" }));
+        type.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                typeActionPerformed(evt);
+            }
+        });
+        jPanel2.add(type, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 320, -1, -1));
+
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/graphique/images/connection.jpg"))); // NOI18N
         jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 510, 374));
 
@@ -73,7 +113,7 @@ public class Connection extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -82,6 +122,47 @@ public class Connection extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        
+        
+        rs = db.querySelectAll("membre", "nom_membre='" + txt_username.getText() + "' and password='" + txt_password.getText() + "' and statut='" + String.valueOf(type.getSelectedItem()) + "'");
+        try {
+            
+            while (rs.next()) {
+                username = rs.getString("nom_membre");
+                password = rs.getString("password");
+                statut = rs.getString("statut");
+                System.out.println(username);   
+                System.out.println(password);  
+                System.out.println(statut);  
+                
+                JOptionPane.showMessageDialog(this, "Connection réussie en tant que "+rs.getString("statut"));
+                       
+                        if (statut.equals("admin")) {
+                             Acceuiladmin  h = new Acceuiladmin();
+                                h.setVisible(true);
+                                this.dispose();
+                            }  
+                        if (statut.equals("user")){
+                                    Acceuiluser k = new Acceuiluser();
+                                    k.setVisible(true);
+                                    this.dispose();
+                             }
+            }
+            if (username == null && password == null) {
+            JOptionPane.showMessageDialog(this, "le nom utilisateur ou le mot de passe est incorrect");
+        } 
+    
+                    } catch (SQLException ex) {
+            Logger.getLogger(Connection.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void typeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_typeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_typeActionPerformed
 
     /**
      * @param args the command line arguments
@@ -124,9 +205,12 @@ public class Connection extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JPasswordField txt_password;
+    private javax.swing.JTextField txt_username;
+    private javax.swing.JComboBox<String> type;
     // End of variables declaration//GEN-END:variables
 }
