@@ -6,6 +6,8 @@
 package graphique;
 
 import javax.swing.JFrame;
+import java.awt.Toolkit;
+import java.awt.Dimension;
 
 /**
  *
@@ -13,9 +15,9 @@ import javax.swing.JFrame;
  */
 public class Acceuiluser extends javax.swing.JFrame {
 
-    private Pret ps;
+     Pret pretframe;
     private Consultation cs;
-    private Depot ds;
+     Depot depotframe; 
     
     public Acceuiluser() {
         initComponents();
@@ -103,9 +105,9 @@ public class Acceuiluser extends javax.swing.JFrame {
                 .addComponent(pretuser)
                 .addGap(42, 42, 42)
                 .addComponent(consultationuser)
-                .addGap(45, 45, 45)
+                .addGap(46, 46, 46)
                 .addComponent(depotuser)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
                 .addComponent(rembourssementuser)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton4)
@@ -137,23 +139,22 @@ public class Acceuiluser extends javax.swing.JFrame {
     }//GEN-LAST:event_consultationuserActionPerformed
 
     private void pretuserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pretuserActionPerformed
-        ps= new Pret();
-       ps.setBounds(4, 4, 200, 100);
-       ps.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-       ps.setVisible(true);
-       this.setVisible(false);
-       this.setSize(700, 500);
-       this.setLocationRelativeTo(null);
+      Dimension p = Toolkit.getDefaultToolkit().getScreenSize();
+        pretframe = new Pret();
+        pretframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        pretframe.setBounds(p.width/2 - 450/2, p.height/2 - 370/2, 450, 370);
+        pretframe.setVisible(true);
+        setVisible(false);
     }//GEN-LAST:event_pretuserActionPerformed
 
     private void depotuserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_depotuserActionPerformed
-        ds= new Depot();
-       ds.setBounds(4, 4, 200, 100);
-       ds.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-       ds.setVisible(true);
-       this.setVisible(false);
-       this.setSize(700, 500);
-       this.setLocationRelativeTo(null);
+        
+         Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
+        depotframe = new Depot();
+        depotframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        depotframe.setBounds(d.width/2 - 450/2, d.height/2 - 370/2, 450, 370);
+        depotframe.setVisible(true);
+        setVisible(false);
     }//GEN-LAST:event_depotuserActionPerformed
 
     /**
@@ -181,6 +182,7 @@ public class Acceuiluser extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(Acceuiluser.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
