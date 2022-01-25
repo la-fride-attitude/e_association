@@ -5,6 +5,10 @@
  */
 package graphique;
 
+import java.awt.Dimension;
+import java.awt.Toolkit;
+import javax.swing.JFrame;
+
 /**
  *
  * @author Frida
@@ -14,7 +18,10 @@ public class Transaction extends javax.swing.JFrame {
     /**
      * Creates new form Transaction
      */
+   Depot depotFrame;
+   Retrait retraitFrame;
     public Transaction() {
+        
         initComponents();
     }
 
@@ -38,12 +45,23 @@ public class Transaction extends javax.swing.JFrame {
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        depot.setBackground(new java.awt.Color(255, 255, 255));
         depot.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         depot.setText("Depôt");
+        depot.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                depotActionPerformed(evt);
+            }
+        });
         jPanel1.add(depot, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 30, -1, -1));
 
         retrait.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         retrait.setText("Retrait");
+        retrait.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                retraitActionPerformed(evt);
+            }
+        });
         jPanel1.add(retrait, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 140, -1, -1));
 
         consultation.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
@@ -71,6 +89,26 @@ public class Transaction extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void depotActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_depotActionPerformed
+
+        Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
+        depotFrame = new Depot();
+        depotFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        depotFrame.setBounds(d.width/2 - 450/2, d.height/2 - 370/2, 450, 370);
+        depotFrame.setVisible(true);
+        setVisible(false);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_depotActionPerformed
+
+    private void retraitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_retraitActionPerformed
+        Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
+        retraitFrame = new Retrait();
+        retraitFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        retraitFrame.setBounds(d.width/2 - 450/2, d.height/2 - 370/2, 450, 370);
+        retraitFrame.setVisible(true);
+        setVisible(false);
+    }//GEN-LAST:event_retraitActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -96,6 +134,7 @@ public class Transaction extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(Transaction.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */

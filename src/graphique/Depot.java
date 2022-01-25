@@ -35,12 +35,12 @@ public class Depot extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        quitterd = new javax.swing.JButton();
+        validedepot = new javax.swing.JButton();
+        quitterdepot = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        textcomptedepot = new javax.swing.JTextField();
+        textmontantdepot = new javax.swing.JTextField();
+        choixcaissedepot = new javax.swing.JComboBox<>();
         jLabel5 = new javax.swing.JLabel();
 
         jButton2.setText("jButton2");
@@ -61,32 +61,32 @@ public class Depot extends javax.swing.JFrame {
         jLabel3.setText("Choix Caisse");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 180, -1, -1));
 
-        jButton1.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jButton1.setText("Validé");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        validedepot.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        validedepot.setText("Validé");
+        validedepot.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                validedepotActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 300, -1, -1));
+        jPanel1.add(validedepot, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 300, -1, -1));
 
-        quitterd.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        quitterd.setText("Quitter");
-        quitterd.addActionListener(new java.awt.event.ActionListener() {
+        quitterdepot.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        quitterdepot.setText("Quitter");
+        quitterdepot.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                quitterdActionPerformed(evt);
+                quitterdepotActionPerformed(evt);
             }
         });
-        jPanel1.add(quitterd, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 300, -1, -1));
+        jPanel1.add(quitterdepot, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 300, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel4.setText("Depôt");
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 10, 50, 20));
-        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 60, 140, -1));
-        jPanel1.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 120, 140, -1));
+        jPanel1.add(textcomptedepot, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 60, 140, -1));
+        jPanel1.add(textmontantdepot, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 120, 140, -1));
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel1.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 180, 140, -1));
+        choixcaissedepot.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Choix", "caisse secours", "caisse epagne", "caisse ration", "caisse transport", "caisse developpement", " " }));
+        jPanel1.add(choixcaissedepot, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 180, 140, -1));
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/graphique/images/dmontant.jpg"))); // NOI18N
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 440, 330));
@@ -105,7 +105,7 @@ public class Depot extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void quitterdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quitterdActionPerformed
+    private void quitterdepotActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quitterdepotActionPerformed
        d= new Acceuiluser();
        d.setBounds(4, 4, 200, 100);
        d.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -113,11 +113,14 @@ public class Depot extends javax.swing.JFrame {
        this.setVisible(false);
        this.setSize(700, 500);
        this.setLocationRelativeTo(null);
-    }//GEN-LAST:event_quitterdActionPerformed
+    }//GEN-LAST:event_quitterdepotActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void validedepotActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_validedepotActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+        System.out.println("depot du compte :"+textcomptedepot.getText()+" d'un montant de : "+
+                textmontantdepot.getText()+" dans la caisse "+
+                (String)choixcaissedepot.getModel().getSelectedItem());
+    }//GEN-LAST:event_validedepotActionPerformed
 
     /**
      * @param args the command line arguments
@@ -145,6 +148,7 @@ public class Depot extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(Depot.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -155,17 +159,17 @@ public class Depot extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JComboBox<String> choixcaissedepot;
     private javax.swing.JButton jButton2;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JButton quitterd;
+    private javax.swing.JButton quitterdepot;
+    private javax.swing.JTextField textcomptedepot;
+    private javax.swing.JTextField textmontantdepot;
+    private javax.swing.JButton validedepot;
     // End of variables declaration//GEN-END:variables
 }
