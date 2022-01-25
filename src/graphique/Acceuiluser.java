@@ -16,7 +16,7 @@ import java.awt.Dimension;
 public class Acceuiluser extends javax.swing.JFrame {
 
      Pret pretframe;
-    private Consultation cs;
+     Rembourssement rembourssementFrame;
      Depot depotframe; 
     
     public Acceuiluser() {
@@ -70,6 +70,11 @@ public class Acceuiluser extends javax.swing.JFrame {
 
         rembourssementuser.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         rembourssementuser.setText("Remboursement");
+        rembourssementuser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rembourssementuserActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -129,13 +134,7 @@ public class Acceuiluser extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void consultationuserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consultationuserActionPerformed
-        cs= new Consultation();
-       cs.setBounds(4, 4, 200, 100);
-       cs.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-       cs.setVisible(true);
-       this.setVisible(false);
-       this.setSize(700, 500);
-       this.setLocationRelativeTo(null);
+      
     }//GEN-LAST:event_consultationuserActionPerformed
 
     private void pretuserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pretuserActionPerformed
@@ -156,6 +155,15 @@ public class Acceuiluser extends javax.swing.JFrame {
         depotframe.setVisible(true);
         setVisible(false);
     }//GEN-LAST:event_depotuserActionPerformed
+
+    private void rembourssementuserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rembourssementuserActionPerformed
+       Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
+        rembourssementFrame = new Rembourssement();
+        rembourssementFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        rembourssementFrame.setBounds(d.width/2 - 500/2, d.height/2 - 410/2, 500, 410);
+        rembourssementFrame.setVisible(true);
+        setVisible(false);
+    }//GEN-LAST:event_rembourssementuserActionPerformed
 
     /**
      * @param args the command line arguments

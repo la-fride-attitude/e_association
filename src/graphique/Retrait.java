@@ -33,11 +33,11 @@ public class Retrait extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
+        aucunr = new javax.swing.JComboBox<>();
+        ncompteretrait = new javax.swing.JTextField();
+        montantretrait = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        valideretrait = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -60,18 +60,23 @@ public class Retrait extends javax.swing.JFrame {
         jLabel4.setText("Montant");
         jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(43, 219, 80, -1));
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "aucun", "caisse epagne", "caisse ration", "caisse developpement", "caisse transport", "caisse secours" }));
-        jPanel2.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(263, 85, 131, -1));
-        jPanel2.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(263, 145, 131, -1));
-        jPanel2.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(263, 218, 131, -1));
+        aucunr.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "aucun", "caisse epagne", "caisse ration", "caisse developpement", "caisse transport", "caisse secours" }));
+        jPanel2.add(aucunr, new org.netbeans.lib.awtextra.AbsoluteConstraints(263, 85, 131, -1));
+        jPanel2.add(ncompteretrait, new org.netbeans.lib.awtextra.AbsoluteConstraints(263, 145, 131, -1));
+        jPanel2.add(montantretrait, new org.netbeans.lib.awtextra.AbsoluteConstraints(263, 218, 131, -1));
 
         jButton1.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jButton1.setText("Quitter");
         jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(43, 280, -1, -1));
 
-        jButton2.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jButton2.setText("Validé");
-        jPanel2.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(323, 280, -1, -1));
+        valideretrait.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        valideretrait.setText("Validé");
+        valideretrait.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                valideretraitActionPerformed(evt);
+            }
+        });
+        jPanel2.add(valideretrait, new org.netbeans.lib.awtextra.AbsoluteConstraints(323, 280, -1, -1));
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/graphique/images/dmontant.jpg"))); // NOI18N
         jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 440, 330));
@@ -104,6 +109,12 @@ public class Retrait extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void valideretraitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_valideretraitActionPerformed
+        System.out.println("retrait du compte :"+ncompteretrait.getText()+" d'un montant de : "+
+                montantretrait.getText()+" dans la caisse "+
+                (String)aucunr.getModel().getSelectedItem());
+    }//GEN-LAST:event_valideretraitActionPerformed
 
     /**
      * @param args the command line arguments
@@ -141,9 +152,8 @@ public class Retrait extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> aucunr;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -151,7 +161,8 @@ public class Retrait extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField montantretrait;
+    private javax.swing.JTextField ncompteretrait;
+    private javax.swing.JButton valideretrait;
     // End of variables declaration//GEN-END:variables
 }

@@ -19,6 +19,7 @@ public class Transaction extends javax.swing.JFrame {
      * Creates new form Transaction
      */
    Depot depotFrame;
+   Retrait retraitFrame;
     public Transaction() {
         
         initComponents();
@@ -56,6 +57,11 @@ public class Transaction extends javax.swing.JFrame {
 
         retrait.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         retrait.setText("Retrait");
+        retrait.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                retraitActionPerformed(evt);
+            }
+        });
         jPanel1.add(retrait, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 140, -1, -1));
 
         consultation.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
@@ -93,6 +99,15 @@ public class Transaction extends javax.swing.JFrame {
         setVisible(false);
         // TODO add your handling code here:
     }//GEN-LAST:event_depotActionPerformed
+
+    private void retraitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_retraitActionPerformed
+        Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
+        retraitFrame = new Retrait();
+        retraitFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        retraitFrame.setBounds(d.width/2 - 450/2, d.height/2 - 370/2, 450, 370);
+        retraitFrame.setVisible(true);
+        setVisible(false);
+    }//GEN-LAST:event_retraitActionPerformed
 
     /**
      * @param args the command line arguments
