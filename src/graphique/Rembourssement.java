@@ -144,7 +144,7 @@ public class Rembourssement extends javax.swing.JFrame {
 
     private void valideRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_valideRActionPerformed
        System.out.println("le numéro de CNI est :"+cniR.getText()+ "d'un montant de : "+montant.getText()+" l'interet est de :"+
-               interet.getText()+"le numéro de compte est :"+Ncompte.getText()+ ;
+               interet.getText()+"le numéro de compte est :"+Ncompte.getText() );
                 
     }//GEN-LAST:event_valideRActionPerformed
 
