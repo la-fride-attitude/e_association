@@ -50,8 +50,8 @@ create table Compte
 create table Membre
 (
    id_membre            int not null,
-   compte_membre        int,
-   password             varchar(254),
+   num_compte        int,
+   passwords            varchar(254),
    nom_membre           varchar(254),
    prenom_membre        varchar(254),
    date_naiss           datetime,

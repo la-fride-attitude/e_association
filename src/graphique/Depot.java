@@ -5,17 +5,26 @@
  */
 package graphique;
 
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author Frida
  */
+
 public class Depot extends javax.swing.JFrame {
 
     /**
      * Creates new form Depot
      */
+    String caisse;
+    int numero;
+    float montant;
     private Acceuiluser d;
     public Depot() {
         initComponents();
@@ -85,7 +94,7 @@ public class Depot extends javax.swing.JFrame {
         jPanel1.add(textcomptedepot, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 60, 140, -1));
         jPanel1.add(textmontantdepot, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 120, 140, -1));
 
-        choixcaissedepot.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Choix", "caisse secours", "caisse epagne", "caisse ration", "caisse transport", "caisse developpement", " " }));
+        choixcaissedepot.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "montant_principale", "montant_epargne", "montant_secours", "montant_ration", "montant_transport", "montant_developpement", " " }));
         jPanel1.add(choixcaissedepot, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 180, 140, -1));
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/graphique/images/dmontant.jpg"))); // NOI18N
@@ -116,10 +125,58 @@ public class Depot extends javax.swing.JFrame {
     }//GEN-LAST:event_quitterdepotActionPerformed
 
     private void validedepotActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_validedepotActionPerformed
-        // TODO add your handling code here:
-        System.out.println("depot du compte :"+textcomptedepot.getText()+" d'un montant de : "+
+
+     
+        java.sql.Connection connection = null;
+        String host="localhost";
+        String port="5433";
+        String db_name="association";
+        String username="postgres";
+        String password="root";
+        boolean veri = false;
+         caisse = (String) choixcaissedepot.getModel().getSelectedItem();
+         caisse.intern();
+        try {
+            Class.forName("org.postgresql.Driver");
+            connection = DriverManager.getConnection("jdbc:postgresql://"+host+":"+port+"/"+db_name+"", ""+username+"", ""+password+"");
+            String sql = "SELECT num_compte,"+caisse+" FROM compte ";
+            
+           Statement statements = connection.createStatement();
+           ResultSet resultat = statements.executeQuery(sql);
+           numero = Integer.parseInt(textcomptedepot.getText());
+           montant = Float.parseFloat(textmontantdepot.getText());
+           while(resultat.next()){
+              int num = resultat.getInt("num_compte");
+              float c = resultat.getFloat(caisse);
+              
+              if(numero == num && montant > 0){ 
+                  veri= true;
+                  c = c + montant;
+                  String sqls = "UPDATE compte SET "+caisse+" = "+ c +"WHERE num_compte = "+ num +" ";
+                  try{
+                  PreparedStatement statement = connection.prepareStatement(sqls);
+                  statement.execute();
+                  JOptionPane.showMessageDialog(null, "Depot effectuer avec succes");
+                  }catch(Exception e){
+                      
+                  }
+                  }
+              }
+           
+           if(veri == false){
+               JOptionPane.showMessageDialog(null, "Compte introuvable ou montant incorect ");
+           }
+           
+                connection.close();
+             } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
+
+       /* System.out.println("depot du compte :"+textcomptedepot.getText()+" d'un montant de : "+
                 textmontantdepot.getText()+" dans la caisse "+
-                (String)choixcaissedepot.getModel().getSelectedItem());
+                (String)choixcaissedepot.getModel().getSelectedItem()); */
     }//GEN-LAST:event_validedepotActionPerformed
 
     /**

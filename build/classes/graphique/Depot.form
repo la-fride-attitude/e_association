@@ -148,12 +148,12 @@
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="7">
-                <StringItem index="0" value="Choix"/>
-                <StringItem index="1" value="caisse secours"/>
-                <StringItem index="2" value="caisse epagne"/>
-                <StringItem index="3" value="caisse ration"/>
-                <StringItem index="4" value="caisse transport"/>
-                <StringItem index="5" value="caisse developpement"/>
+                <StringItem index="0" value="montant_principale"/>
+                <StringItem index="1" value="montant_epargne"/>
+                <StringItem index="2" value="montant_secours"/>
+                <StringItem index="3" value="montant_ration"/>
+                <StringItem index="4" value="montant_transport"/>
+                <StringItem index="5" value="montant_developpement"/>
                 <StringItem index="6" value=" "/>
               </StringArray>
             </Property>

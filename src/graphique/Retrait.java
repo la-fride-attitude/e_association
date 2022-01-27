@@ -5,6 +5,12 @@
  */
 package graphique;
 
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Frida
@@ -14,6 +20,9 @@ public class Retrait extends javax.swing.JFrame {
     /**
      * Creates new form Retrait
      */
+    String caisse;
+    int numero;
+    float montant;
     public Retrait() {
         initComponents();
     }
@@ -60,7 +69,7 @@ public class Retrait extends javax.swing.JFrame {
         jLabel4.setText("Montant");
         jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(43, 219, 80, -1));
 
-        aucunr.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "aucun", "caisse epagne", "caisse ration", "caisse developpement", "caisse transport", "caisse secours" }));
+        aucunr.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "montant_principale", "montant_epargne", "montant_secours", "montant_ration", "montant_transport", "montant_developpement" }));
         jPanel2.add(aucunr, new org.netbeans.lib.awtextra.AbsoluteConstraints(263, 85, 131, -1));
         jPanel2.add(ncompteretrait, new org.netbeans.lib.awtextra.AbsoluteConstraints(263, 145, 131, -1));
         jPanel2.add(montantretrait, new org.netbeans.lib.awtextra.AbsoluteConstraints(263, 218, 131, -1));
@@ -96,24 +105,71 @@ public class Retrait extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 308, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 204, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void valideretraitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_valideretraitActionPerformed
-        System.out.println("retrait du compte :"+ncompteretrait.getText()+" d'un montant de : "+
+         
+        java.sql.Connection connection = null;
+        String host="localhost";
+        String port="5433";
+        String db_name="association";
+        String username="postgres";
+        String password="root";
+        boolean veri = false;
+         caisse = (String) aucunr.getModel().getSelectedItem();
+         caisse.intern();
+        try {
+            Class.forName("org.postgresql.Driver");
+            connection = DriverManager.getConnection("jdbc:postgresql://"+host+":"+port+"/"+db_name+"", ""+username+"", ""+password+"");
+            String sql = "SELECT num_compte,"+caisse+" FROM compte ";
+            
+           Statement statements = connection.createStatement();
+           ResultSet resultat = statements.executeQuery(sql);
+           numero = Integer.parseInt(ncompteretrait.getText());
+           montant = Float.parseFloat(montantretrait.getText());
+           while(resultat.next()){
+              int num = resultat.getInt("num_compte");
+              float c = resultat.getFloat(caisse);
+              
+              if(numero == num && montant > 0){ 
+                  veri= true;
+                  c = c - montant;
+                  String sqls = "UPDATE compte SET "+caisse+" = "+ c +"WHERE num_compte = "+ num +" ";
+                  try{
+                  PreparedStatement statement = connection.prepareStatement(sqls);
+                  statement.execute();
+                  JOptionPane.showMessageDialog(null, "Retrait effectuer avec succes");
+                  }catch(Exception e){
+                      
+                  }
+                  }
+              }
+           
+           if(veri == false){
+               JOptionPane.showMessageDialog(null, "Compte introuvable ou montant incorect ");
+           }
+           
+                connection.close();
+             } catch (Exception e) {
+            e.printStackTrace();
+        }
+        
+        
+        
+        
+        
+        
+        /*System.out.println("retrait du compte :"+ncompteretrait.getText()+" d'un montant de : "+
                 montantretrait.getText()+" dans la caisse "+
-                (String)aucunr.getModel().getSelectedItem());
+                (String)aucunr.getModel().getSelectedItem());*/
     }//GEN-LAST:event_valideretraitActionPerformed
 
     /**

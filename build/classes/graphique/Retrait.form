@@ -23,18 +23,12 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
-              <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="0" pref="308" max="32767" attributes="0"/>
-          </Group>
+          <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
-              <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="0" pref="204" max="32767" attributes="0"/>
-          </Group>
+          <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
       </Group>
     </DimensionLayout>
   </Layout>
@@ -116,12 +110,12 @@
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                   <StringArray count="6">
-                    <StringItem index="0" value="aucun"/>
-                    <StringItem index="1" value="caisse epagne"/>
-                    <StringItem index="2" value="caisse ration"/>
-                    <StringItem index="3" value="caisse developpement"/>
-                    <StringItem index="4" value="caisse transport"/>
-                    <StringItem index="5" value="caisse secours"/>
+                    <StringItem index="0" value="montant_principale"/>
+                    <StringItem index="1" value="montant_epargne"/>
+                    <StringItem index="2" value="montant_secours"/>
+                    <StringItem index="3" value="montant_ration"/>
+                    <StringItem index="4" value="montant_transport"/>
+                    <StringItem index="5" value="montant_developpement"/>
                   </StringArray>
                 </Property>
               </Properties>
