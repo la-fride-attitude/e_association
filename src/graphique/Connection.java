@@ -8,6 +8,7 @@ package graphique;
 import base_de_donnée.Param_de_connection;
 import base_de_donnée.BDD;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -302,4 +303,8 @@ public class Connection extends javax.swing.JFrame {
     private javax.swing.JTextField txt_username;
     private javax.swing.JComboBox<String> type;
     // End of variables declaration//GEN-END:variables
+
+    PreparedStatement preparedStatement(String insert_into_membre_values) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
