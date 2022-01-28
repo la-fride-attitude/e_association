@@ -126,7 +126,7 @@ public class BDD {
     }
     
     //afficher les colonnes dans une table en fonction du paramètre état
-    public ResultSet querySelect_state(String[] nomColonne, String nomTable, String état) {
+    public ResultSet querySelect(String[] nomColonne, String nomTable, String état) {
 
         connexionDatabase();
         int i;

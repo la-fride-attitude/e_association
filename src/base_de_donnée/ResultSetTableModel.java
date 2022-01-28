@@ -1,38 +1,44 @@
 
 package base_de_donnée;
 
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.table.AbstractTableModel;
 
+/**
+ *
+ * @author Seno04
+ */
+public class ResultSetTableModel extends AbstractTableModel {
 
-public class ResultSetTableModel extends AbstractTableModel{
-    //declaration
-        private ResultSet rs;
-        
-        public ResultSetTableModel(ResultSet rs) {
-            this.rs = rs;
-            fireTableDataChanged();
-        }
+    private ResultSet rs;
 
-    
-    //fonction GetColumncount
+    public ResultSetTableModel(ResultSet rs) {
+        this.rs = rs;
+        fireTableDataChanged();
+    }
+
     public int getColumnCount() {
         try {
             if (rs == null) {
                 return 0;
+                
             } else {
                 return  rs.getMetaData().getColumnCount();
             }
         } catch (SQLException e) {
-            System.out.println("getColumncount  resultset generating error while getting column count");//en cas d'erreur, voici le message
-            
+            System.out.println("getColumncount  resultset generating error while getting column count");
             System.out.println(e.getMessage());
             return 0;
         }
     }
-    
-    //fonction getRowCount()
+
     public int getRowCount() {
         try {
             if (rs == null) {
@@ -47,8 +53,7 @@ public class ResultSetTableModel extends AbstractTableModel{
             return 0;
         }
     }
-    
-    // getValueAt
+
     public Object getValueAt(int rowIndex, int columnIndex) {
         if (rowIndex < 0 || rowIndex > getRowCount()
                 || columnIndex < 0 || columnIndex > getColumnCount()) {
@@ -67,8 +72,7 @@ public class ResultSetTableModel extends AbstractTableModel{
             return null;
         }
     }
-    
-    //fonction getColumnName 
+
     @Override
     public String getColumnName(int columnIndex) {
         try {

@@ -134,7 +134,9 @@ public class Acceuiluser extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void consultationuserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consultationuserActionPerformed
-      
+        Consultation c = new Consultation();
+        c.setVisible(true);
+        this.dispose();      
     }//GEN-LAST:event_consultationuserActionPerformed
 
     private void pretuserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pretuserActionPerformed

@@ -4,6 +4,8 @@
  * and open the template in the editor.
  */
 package graphique;
+package org.netbeans.lib.awtextra;
+
 
 import base_de_donnée.Param_de_connection;
 import base_de_donnée.BDD;
