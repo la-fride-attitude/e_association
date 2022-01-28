@@ -307,4 +307,8 @@ public class Connection extends javax.swing.JFrame {
     PreparedStatement preparedStatement(String insert_into_membre_values) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    void close() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
