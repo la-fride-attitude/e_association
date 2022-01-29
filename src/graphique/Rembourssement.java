@@ -5,6 +5,10 @@
  */
 package graphique;
 
+import java.awt.Dimension;
+import java.awt.Toolkit;
+import javax.swing.JFrame;
+
 /**
  *
  * @author Frida
@@ -14,6 +18,7 @@ public class Rembourssement extends javax.swing.JFrame {
     /**
      * Creates new form Rembourssement
      */
+    Acceuiluser acceuilFrame;
     public Rembourssement() {
         initComponents();
     }
@@ -59,6 +64,11 @@ public class Rembourssement extends javax.swing.JFrame {
 
         quitterR.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         quitterR.setText("Quitter");
+        quitterR.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                quitterRActionPerformed(evt);
+            }
+        });
 
         valideR.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         valideR.setText("Valider");
@@ -147,6 +157,15 @@ public class Rembourssement extends javax.swing.JFrame {
                interet.getText()+"le numéro de compte est :"+Ncompte.getText() );
                 
     }//GEN-LAST:event_valideRActionPerformed
+
+    private void quitterRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quitterRActionPerformed
+ Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
+        acceuilFrame = new Acceuiluser();
+        acceuilFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        acceuilFrame.setBounds(d.width/2 - 530/2, d.height/2 - 400/2, 530, 400);
+       acceuilFrame.setVisible(true);
+        setVisible(false);
+    }//GEN-LAST:event_quitterRActionPerformed
 
     /**
      * @param args the command line arguments

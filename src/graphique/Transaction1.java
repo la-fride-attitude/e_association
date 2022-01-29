@@ -13,7 +13,7 @@ import javax.swing.JFrame;
  *
  * @author Frida
  */
-public class Transaction extends javax.swing.JFrame {
+public class Transaction1 extends javax.swing.JFrame {
 
     /**
      * Creates new form Transaction
@@ -21,9 +21,8 @@ public class Transaction extends javax.swing.JFrame {
    Depot depotFrame;
    Retrait retraitFrame;
    Connection ConnectionFrame;
-   Acceuiladmin adminFrame;
    
-    public Transaction() {
+    public Transaction1() {
         
         initComponents();
     }
@@ -119,10 +118,10 @@ public class Transaction extends javax.swing.JFrame {
 
     private void quitterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quitterActionPerformed
         Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
-        adminFrame = new Acceuiladmin();
-        adminFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        adminFrame.setBounds(d.width/2 - 1000/2, d.height/2 - 900/2, 1000, 900);
-        adminFrame.setVisible(true);
+        ConnectionFrame = new Connection();
+        ConnectionFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        ConnectionFrame.setBounds(d.width/2 - 450/2, d.height/2 - 370/2, 450, 370);
+        ConnectionFrame.setVisible(true);
         setVisible(false);
     }//GEN-LAST:event_quitterActionPerformed
 
@@ -143,21 +142,23 @@ public class Transaction extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Transaction.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Transaction1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Transaction.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Transaction1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Transaction.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Transaction1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Transaction.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Transaction1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Transaction().setVisible(true);
+                new Transaction1().setVisible(true);
             }
         });
     }

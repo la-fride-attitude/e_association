@@ -5,10 +5,13 @@
  */
 package graphique;
 
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 /**
@@ -23,6 +26,7 @@ public class Retrait extends javax.swing.JFrame {
     String caisse;
     int numero;
     float montant;
+    Transaction acceuilFrame;
     public Retrait() {
         initComponents();
     }
@@ -76,6 +80,11 @@ public class Retrait extends javax.swing.JFrame {
 
         jButton1.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jButton1.setText("Quitter");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(43, 280, -1, -1));
 
         valideretrait.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
@@ -171,6 +180,15 @@ public class Retrait extends javax.swing.JFrame {
                 montantretrait.getText()+" dans la caisse "+
                 (String)aucunr.getModel().getSelectedItem());*/
     }//GEN-LAST:event_valideretraitActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
+        acceuilFrame = new Transaction();
+        acceuilFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        acceuilFrame.setBounds(d.width/2 - 600/2, d.height/2 - 400/2, 600, 400);
+       acceuilFrame.setVisible(true);
+        setVisible(false);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments

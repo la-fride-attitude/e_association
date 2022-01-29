@@ -18,6 +18,7 @@ public class Acceuiluser extends javax.swing.JFrame {
      Pret pretframe;
      Rembourssement rembourssementFrame;
      Depot depotframe; 
+      Connection connectionFrame ;  
     
     public Acceuiluser() {
         initComponents();
@@ -32,15 +33,20 @@ public class Acceuiluser extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
-        jPanel2 = new javax.swing.JPanel();
         depotuser = new javax.swing.JButton();
         consultationuser = new javax.swing.JButton();
         pretuser = new javax.swing.JButton();
         rembourssementuser = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+
+        jLabel1.setText("jLabel1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         depotuser.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         depotuser.setText("Depôt");
@@ -49,6 +55,7 @@ public class Acceuiluser extends javax.swing.JFrame {
                 depotuserActionPerformed(evt);
             }
         });
+        jPanel1.add(depotuser, new org.netbeans.lib.awtextra.AbsoluteConstraints(42, 27, 135, -1));
 
         consultationuser.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         consultationuser.setText("Consultation");
@@ -57,6 +64,7 @@ public class Acceuiluser extends javax.swing.JFrame {
                 consultationuserActionPerformed(evt);
             }
         });
+        jPanel1.add(consultationuser, new org.netbeans.lib.awtextra.AbsoluteConstraints(301, 27, 147, -1));
 
         pretuser.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         pretuser.setText("Prêt");
@@ -65,6 +73,7 @@ public class Acceuiluser extends javax.swing.JFrame {
                 pretuserActionPerformed(evt);
             }
         });
+        jPanel1.add(pretuser, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 180, 135, -1));
 
         rembourssementuser.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         rembourssementuser.setText("Remboursement");
@@ -73,63 +82,29 @@ public class Acceuiluser extends javax.swing.JFrame {
                 rembourssementuserActionPerformed(evt);
             }
         });
+        jPanel1.add(rembourssementuser, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 170, -1, -1));
 
         jButton4.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jButton4.setText("Quitter");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 290, 135, -1));
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(consultationuser, javax.swing.GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE)
-                        .addComponent(depotuser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(rembourssementuser)
-                    .addComponent(pretuser, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(28, Short.MAX_VALUE))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap(140, Short.MAX_VALUE)
-                .addComponent(depotuser)
-                .addGap(62, 62, 62)
-                .addComponent(consultationuser)
-                .addGap(57, 57, 57)
-                .addComponent(pretuser)
-                .addGap(57, 57, 57)
-                .addComponent(rembourssementuser)
-                .addGap(57, 57, 57)
-                .addComponent(jButton4)
-                .addGap(21, 21, 21))
-        );
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 509, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/graphique/images/depot.jpg"))); // NOI18N
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 530, 350));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -166,6 +141,15 @@ public class Acceuiluser extends javax.swing.JFrame {
         rembourssementFrame.setVisible(true);
         setVisible(false);
     }//GEN-LAST:event_rembourssementuserActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+      Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
+        connectionFrame = new Connection();
+        connectionFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        connectionFrame.setBounds(d.width/2 - 500/2, d.height/2 - 400/2, 500, 400);
+       connectionFrame.setVisible(true);
+        setVisible(false);
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -207,8 +191,9 @@ public class Acceuiluser extends javax.swing.JFrame {
     private javax.swing.JButton consultationuser;
     private javax.swing.JButton depotuser;
     private javax.swing.JButton jButton4;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JButton pretuser;
     private javax.swing.JButton rembourssementuser;
     // End of variables declaration//GEN-END:variables

@@ -5,6 +5,8 @@
  */
 package graphique;
 
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -26,6 +28,7 @@ public class Depot extends javax.swing.JFrame {
     int numero;
     float montant;
     private Acceuiluser d;
+    Transaction acceuilFrame;
     public Depot() {
         initComponents();
     }
@@ -115,13 +118,12 @@ public class Depot extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void quitterdepotActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quitterdepotActionPerformed
-       d= new Acceuiluser();
-       d.setBounds(4, 4, 200, 100);
-       d.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-       d.setVisible(true);
-       this.setVisible(false);
-       this.setSize(700, 500);
-       this.setLocationRelativeTo(null);
+      Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
+        acceuilFrame = new Transaction();
+        acceuilFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        acceuilFrame.setBounds(d.width/2 - 600/2, d.height/2 - 400/2, 600, 400);
+       acceuilFrame.setVisible(true);
+        setVisible(false);
     }//GEN-LAST:event_quitterdepotActionPerformed
 
     private void validedepotActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_validedepotActionPerformed

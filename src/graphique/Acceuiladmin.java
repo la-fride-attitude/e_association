@@ -6,6 +6,8 @@
 package graphique;
 
 import base_de_donnée.ResultSetTableModel;
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -37,7 +39,9 @@ public class Acceuiladmin extends javax.swing.JFrame {
     String username="postgres";
     String password="root";
     boolean vrai = false;
-    
+     Transaction transactionFrame;
+    Acceuilpretetrembourcement pretrembourseFrame;
+    Connection connectionFrame;
     public Acceuiladmin() {
         initComponents();
         try {
@@ -244,6 +248,11 @@ public class Acceuiladmin extends javax.swing.JFrame {
         modifier.setBackground(new java.awt.Color(0, 0, 204));
         modifier.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         modifier.setText("Modifier");
+        modifier.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                modifierActionPerformed(evt);
+            }
+        });
 
         jButton3.setBackground(new java.awt.Color(0, 0, 204));
         jButton3.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
@@ -494,11 +503,12 @@ public class Acceuiladmin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void quitteradminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quitteradminActionPerformed
-        q= new Connection();
-       q.setBounds(4, 4, 200, 100);
-       q.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-       q.setVisible(true);
-       this.setVisible(false);
+       Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
+        connectionFrame = new Connection();
+        connectionFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        connectionFrame.setBounds(d.width/2 - 500/2, d.height/2 - 400/2, 500, 400);
+       connectionFrame.setVisible(true);
+        setVisible(false);
     }//GEN-LAST:event_quitteradminActionPerformed
 
     private void gestionmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gestionmActionPerformed
@@ -506,19 +516,22 @@ public class Acceuiladmin extends javax.swing.JFrame {
     }//GEN-LAST:event_gestionmActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-       da= new Depot();
-       da.setBounds(4, 4, 200, 100);
-       da.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-       da.setVisible(true);
-       this.setVisible(false);
+        Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
+        transactionFrame = new Transaction();
+        transactionFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        transactionFrame.setBounds(d.width/2 - 600/2, d.height/2 - 370/2, 600, 370);
+       transactionFrame.setVisible(true);
+        setVisible(false);
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        pa= new Pret();
-       pa.setBounds(4, 4, 200, 100);
-       pa.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-       pa.setVisible(true);
-       this.setVisible(false);
+     
+         Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
+        pretrembourseFrame = new Acceuilpretetrembourcement();
+        pretrembourseFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        pretrembourseFrame.setBounds(d.width/2 - 600/2, d.height/2 - 370/2, 600, 370);
+       pretrembourseFrame.setVisible(true);
+        setVisible(false);
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
@@ -579,6 +592,10 @@ public class Acceuiladmin extends javax.swing.JFrame {
     private void genreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_genreActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_genreActionPerformed
+
+    private void modifierActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modifierActionPerformed
+
+    }//GEN-LAST:event_modifierActionPerformed
 
     /**
      * @param args the command line arguments

@@ -5,6 +5,8 @@
  */
 package graphique;
 
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import javax.swing.JFrame;
 
 /**
@@ -13,7 +15,7 @@ import javax.swing.JFrame;
  */
 public class Pret extends javax.swing.JFrame {
 
-    private Acceuiluser as;
+    Transaction acceuilFrame;
     
     public Pret() {
         initComponents();
@@ -130,13 +132,12 @@ public class Pret extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void quitterpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quitterpActionPerformed
-       as= new Acceuiluser();
-       as.setBounds(4, 4, 200, 100);
-       as.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-       as.setVisible(true);
-       this.setVisible(false);
-       this.setSize(700, 500);
-       this.setLocationRelativeTo(null);
+      Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
+        acceuilFrame = new Transaction();
+        acceuilFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        acceuilFrame.setBounds(d.width/2 - 500/2, d.height/2 - 370/2, 500, 370);
+        acceuilFrame.setVisible(true);
+        setVisible(false);
     }//GEN-LAST:event_quitterpActionPerformed
 
     /**
