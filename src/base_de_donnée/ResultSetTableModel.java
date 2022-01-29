@@ -22,7 +22,8 @@ public class ResultSetTableModel extends AbstractTableModel{
             if (rs == null) {
                 return 0;
             } else {
-                return  rs.getMetaData().getColumnCount();
+                int columnCount = rs.getMetaData().getColumnCount();
+                return  columnCount;
             }
         } catch (SQLException e) {
             System.out.println("getColumncount  resultset generating error while getting column count");//en cas d'erreur, voici le message
@@ -38,8 +39,11 @@ public class ResultSetTableModel extends AbstractTableModel{
             if (rs == null) {
                 return 0;
             } else {
-                rs.last();
-                return rs.getRow();
+                int inc = 0;
+                while(rs.next()){
+                    inc++;
+                }
+                return  inc; 
             }
         } catch (SQLException e) {
             System.out.println("getrowcount resultset generating error while getting rows count");
