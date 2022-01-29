@@ -20,7 +20,7 @@ public class Transaction1 extends javax.swing.JFrame {
      */
    Depot depotFrame;
    Retrait retraitFrame;
-   Connection ConnectionFrame;
+  Acceuiluser userFrame;
    
     public Transaction1() {
         
@@ -118,10 +118,10 @@ public class Transaction1 extends javax.swing.JFrame {
 
     private void quitterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quitterActionPerformed
         Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
-        ConnectionFrame = new Connection();
-        ConnectionFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        ConnectionFrame.setBounds(d.width/2 - 450/2, d.height/2 - 370/2, 450, 370);
-        ConnectionFrame.setVisible(true);
+        userFrame = new Acceuiluser();
+        userFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        userFrame.setBounds(d.width/2 - 450/2, d.height/2 - 370/2, 450, 370);
+        userFrame.setVisible(true);
         setVisible(false);
     }//GEN-LAST:event_quitterActionPerformed
 
