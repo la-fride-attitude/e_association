@@ -387,11 +387,7 @@ public class Acceuiladmin extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-      ca= new Consultation();
-       ca.setBounds(4, 4, 200, 100);
-       ca.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-       ca.setVisible(true);
-       this.setVisible(false);
+      
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

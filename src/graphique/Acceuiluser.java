@@ -67,6 +67,11 @@ public class Acceuiluser extends javax.swing.JFrame {
 
         jButton4.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jButton4.setText("Quitter");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         rembourssementuser.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         rembourssementuser.setText("Remboursement");
@@ -166,6 +171,14 @@ public class Acceuiluser extends javax.swing.JFrame {
         rembourssementFrame.setVisible(true);
         setVisible(false);
     }//GEN-LAST:event_rembourssementuserActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+       Connection q= new Connection();
+       q.setBounds(4, 4, 200, 100);
+       q.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+       q.setVisible(true);
+       this.setVisible(false);
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
      * @param args the command line arguments
