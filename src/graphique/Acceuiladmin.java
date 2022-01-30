@@ -13,6 +13,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
 
@@ -25,7 +27,7 @@ public class Acceuiladmin extends javax.swing.JFrame {
     private Connection q;
     private Depot da;
     private Pret pa;
-    private Consultation ca;
+    
     Connection con = null;
     Statement st = null;
     ResultSet re = null;
@@ -42,13 +44,16 @@ public class Acceuiladmin extends javax.swing.JFrame {
      Transaction transactionFrame;
     Acceuilpretetrembourcement pretrembourseFrame;
     Connection connectionFrame;
+    Resultset rs;
+   
     public Acceuiladmin() {
         initComponents();
-        try {
+       Table();
+       /* try {
             Class.forName("org.postgresql.Driver");
             connection =  DriverManager.getConnection("jdbc:postgresql://"+host+":"+port+"/"+db_name+"", ""+username+"", ""+password+"");
             Statement adds = connection.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
-            String sql = "SELECT  (id_membre,num_compte,passwords,nom_membre,prenom_membre,date_naiss,num_cni,etat_civil,personne_a_contacter,genre,statut) FROM membre";
+            String sql = "SELECT(id_membre,num_compte,passwords,nom_membre,prenom_membre,date_naiss,num_cni,etat_civil,personne_a_contacter,genre,statut) FROM membre";
                     
                  ResultSet r = adds.executeQuery(sql);
              ResultSetTableModel model = new ResultSetTableModel(r);
@@ -83,7 +88,7 @@ public class Acceuiladmin extends javax.swing.JFrame {
             }
            connection.close();
         } catch (Exception e) {
-        }
+        }*/
     }
 
     /**
@@ -207,6 +212,11 @@ public class Acceuiladmin extends javax.swing.JFrame {
                 "id_membre", "num_compte", "password", "nom_membre", "prenom_membre", "date_naiss", "num_cni", "etat_civil", "personne_a_contacter", "genre", "statut"
             }
         ));
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                jTable1MouseReleased(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -284,6 +294,11 @@ public class Acceuiladmin extends javax.swing.JFrame {
 
         supprimer.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         supprimer.setText("Supprimer");
+        supprimer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                supprimerActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -458,13 +473,15 @@ public class Acceuiladmin extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(quitteradmin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(gestionm, javax.swing.GroupLayout.DEFAULT_SIZE, 370, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(quitteradmin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(gestionm, javax.swing.GroupLayout.DEFAULT_SIZE, 370, Short.MAX_VALUE)))
+                    .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 856, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(6, 6, 6))
@@ -472,17 +489,17 @@ public class Acceuiladmin extends javax.swing.JFrame {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                .addGap(98, 98, 98)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(gestionm)
-                .addGap(59, 59, 59)
+                .addGap(68, 68, 68)
                 .addComponent(jButton6)
-                .addGap(61, 61, 61)
+                .addGap(67, 67, 67)
                 .addComponent(jButton5)
-                .addGap(60, 60, 60)
+                .addGap(65, 65, 65)
                 .addComponent(jButton4)
-                .addGap(54, 54, 54)
+                .addGap(68, 68, 68)
                 .addComponent(quitteradmin)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(182, 182, 182))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -535,17 +552,82 @@ public class Acceuiladmin extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-      ca= new Consultation();
-       ca.setBounds(4, 4, 200, 100);
-       ca.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-       ca.setVisible(true);
-       this.setVisible(false);
+      
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void addmembreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addmembreActionPerformed
         // TODO add your handling code here:
+        naissances = naissance.getDate();
+       mynaissance = new java.sql.Date(naissances.getTime());
+        
+        
+       
+        try{
+             
+            PreparedStatement add = connection.prepareStatement("INSERT INTO membre(id_membre,num_compte,passwords,nom_membre,prenom_membre,date_naiss,num_cni,etat_civil,personne_a_contacter,genre,statut) values(?,?,?,?,?,?,?,?,?,?,?)");
+            add.setInt(1, Integer.parseInt(id.getText().intern()));
+             add.setInt(2, Integer.parseInt(numcompte.getText().intern()));            
+              add.setInt(3, Integer.parseInt(motdepasse.getText().intern()));           
+            add.setString(4, nommem.getText().intern());
+            add.setString(5, prenommem.getText().intern());
+            add.setString(6, mynaissance.toGMTString().intern());
+            add.setString(7, cnimem.getText().intern());
+            add.setString(8, etatcivil.getSelectedItem().toString());
+            
+             add.setInt(9, Integer.parseInt(pacontater.getText().intern()));
+             add.setString(10, genre.getText().intern());
+              add.setString(11, statut.getSelectedItem().toString());
+               
+                 int r = add.executeUpdate();
+                 
+                 
+                 if(r>0){
+                     int aj = Integer.parseInt(numcompte.getText().intern());
+                     
+                 }
+            
+                 connection.close();
+                 Table();
+        }catch(Exception e){
+             
+            
+        }
     }//GEN-LAST:event_addmembreActionPerformed
 
+    
+    public void Table() {
+        String[] member = {"id_membre","num_compte","passwords","nom_membre","prenom_membre","date_naiss","num_cni","etat_civil","personne_a_contacter","genre","statut"};
+        String[] afficher = new String[11];
+        DefaultTableModel model = new DefaultTableModel(null, member);
+        
+        try {
+             Class.forName("org.postgresql.Driver");
+            connection =  DriverManager.getConnection("jdbc:postgresql://"+host+":"+port+"/"+db_name+"", ""+username+"", ""+password+"");
+            Statement adds = connection.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            ResultSet rs = adds.executeQuery("SELECT*FROM membre");
+            
+            while (rs.next()) {
+                afficher[0] = rs.getString("id_membre");
+                afficher[1] = rs.getString("num_compte");
+                afficher[2] = rs.getString("passwords");
+                afficher[3] = rs.getString("nom_membre");
+                afficher[4] = rs.getString("prenom_membre");
+                afficher[5] = rs.getString("date_naiss");
+                afficher[6] = rs.getString("num_cni");
+                afficher[7] = rs.getString("etat_civil");
+                afficher[8] = rs.getString("personne_a_contacter");
+                afficher[9] = rs.getString("genre");
+                afficher[10] = rs.getString("statut");
+                model.addRow(afficher);
+            }
+            jTable1.setModel(model);
+            connection.close();
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
     private void addmembreMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addmembreMouseClicked
        naissances = naissance.getDate();
        mynaissance = new java.sql.Date(naissances.getTime());
@@ -573,8 +655,7 @@ public class Acceuiladmin extends javax.swing.JFrame {
                  
                  if(r>0){
                      int aj = Integer.parseInt(numcompte.getText().intern());
-                     insertioncompte conn = new insertioncompte(aj);
-                     conn.connection();
+                     JOptionPane.showMessageDialog(null, "Insertion effectuer avec succes");
                  }
             
                  connection.close();
@@ -594,8 +675,98 @@ public class Acceuiladmin extends javax.swing.JFrame {
     }//GEN-LAST:event_genreActionPerformed
 
     private void modifierActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modifierActionPerformed
-
+ 
+        
+        
+       
+        try{
+            Class.forName("org.postgresql.Driver");
+            connection =  DriverManager.getConnection("jdbc:postgresql://"+host+":"+port+"/"+db_name+"", ""+username+"", ""+password+"");
+            Statement adds = connection.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
+             
+            PreparedStatement add = connection.prepareStatement("UPDATE membre set id_membre= $ ,num_compte= $,passwords= $,nom_membre= $,prenom_membre= $,num_cni= $,etat_civil= $,personne_a_contacter= $,genre=$,statut=$ where id_membre=$");
+            add.setInt(1, Integer.parseInt(id.getText().intern()));
+             add.setInt(2, Integer.parseInt(numcompte.getText().intern()));            
+              add.setInt(3, Integer.parseInt(motdepasse.getText().intern()));           
+            add.setString(4, nommem.getText().intern());
+            add.setString(5, prenommem.getText().intern());
+           
+            add.setString(7, cnimem.getText().intern());
+            add.setString(8, etatcivil.getSelectedItem().toString());
+            
+             add.setInt(9, Integer.parseInt(pacontater.getText().intern()));
+             add.setString(10, genre.getText().intern());
+              add.setString(11, statut.getSelectedItem().toString());
+               
+                 int r = add.executeUpdate();
+                 
+                 
+                 if(r>0){
+                     int aj = Integer.parseInt(numcompte.getText().intern());
+                     JOptionPane.showMessageDialog(null, "modification effectuer avec succes");
+                 }
+            
+                 connection.close();
+        }catch(Exception e){
+             
+            
+        }
+       
     }//GEN-LAST:event_modifierActionPerformed
+
+    private void jTable1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseReleased
+        // TODO add your handling code here:
+        int i = jTable1.getSelectedRow();
+       DefaultTableModel model = (DefaultTableModel)jTable1.getModel();
+       id.setText(model.getValueAt(i, 0).toString());
+       numcompte.setText(model.getValueAt(i, 1).toString());
+       motdepasse.setText(model.getValueAt(i, 2).toString());
+       nommem.setText(model.getValueAt(i, 3).toString());
+       prenommem.setText(model.getValueAt(i,4).toString());
+       
+       cnimem.setText(model.getValueAt(i, 6).toString());
+       etatcivil.setSelectedItem(model.getValueAt(i, 7).toString());
+       pacontater.setText(model.getValueAt(i, 8).toString());
+       genre.setText(model.getValueAt(i, 9).toString());
+       statut.setSelectedItem(model.getValueAt(i, 10).toString());
+    }//GEN-LAST:event_jTable1MouseReleased
+
+    private void supprimerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_supprimerActionPerformed
+        // TODO add your handling code here:
+         try{
+            Class.forName("org.postgresql.Driver");
+            connection =  DriverManager.getConnection("jdbc:postgresql://"+host+":"+port+"/"+db_name+"", ""+username+"", ""+password+"");
+            Statement adds = connection.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
+             
+            PreparedStatement add = connection.prepareStatement("DELETE membre from membre where id_membre = $");
+            add.setInt(1, Integer.parseInt(id.getText().intern()));
+             add.setInt(2, Integer.parseInt(numcompte.getText().intern()));            
+              add.setInt(3, Integer.parseInt(motdepasse.getText().intern()));           
+            add.setString(4, nommem.getText().intern());
+            add.setString(5, prenommem.getText().intern());
+           
+            add.setString(7, cnimem.getText().intern());
+            add.setString(8, etatcivil.getSelectedItem().toString());
+            
+             add.setInt(9, Integer.parseInt(pacontater.getText().intern()));
+             add.setString(10, genre.getText().intern());
+              add.setString(11, statut.getSelectedItem().toString());
+               
+                 int r = add.executeUpdate();
+                 
+                 
+                 if(r>0){
+                     int aj = Integer.parseInt(numcompte.getText().intern());
+                     JOptionPane.showMessageDialog(null, "suppressio, effectuer avec succes");
+                 }
+            
+                 connection.close();
+        }catch(Exception e){
+             
+            
+        }
+        
+    }//GEN-LAST:event_supprimerActionPerformed
 
     /**
      * @param args the command line arguments
