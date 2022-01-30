@@ -133,6 +133,7 @@ public class Acceuiladmin extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         genre = new javax.swing.JTextField();
         supprimer = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
         quitteradmin = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
@@ -300,6 +301,14 @@ public class Acceuiladmin extends javax.swing.JFrame {
             }
         });
 
+        jButton1.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jButton1.setText("Actualiser");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -358,12 +367,16 @@ public class Acceuiladmin extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(169, 169, 169)
                 .addComponent(addmembre)
-                .addGap(136, 136, 136)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel16)
                     .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(136, 136, 136)
+                        .addComponent(jLabel16))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(88, 88, 88)
                         .addComponent(modifier)
-                        .addGap(162, 162, 162)
+                        .addGap(67, 67, 67)
+                        .addComponent(jButton1)
+                        .addGap(70, 70, 70)
                         .addComponent(supprimer)))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
@@ -416,7 +429,8 @@ public class Acceuiladmin extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(addmembre)
                     .addComponent(modifier)
-                    .addComponent(supprimer))
+                    .addComponent(supprimer)
+                    .addComponent(jButton1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
@@ -552,7 +566,12 @@ public class Acceuiladmin extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-      
+           Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
+        connectionFrame = new Connection();
+        connectionFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        connectionFrame.setBounds(d.width/2 - 500/2, d.height/2 - 400/2, 500, 400);
+       connectionFrame.setVisible(true);
+        setVisible(false);      
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void addmembreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addmembreActionPerformed
@@ -678,7 +697,7 @@ public class Acceuiladmin extends javax.swing.JFrame {
  
         
         
-       
+      
         try{
             Class.forName("org.postgresql.Driver");
             connection =  DriverManager.getConnection("jdbc:postgresql://"+host+":"+port+"/"+db_name+"", ""+username+"", ""+password+"");
@@ -768,6 +787,41 @@ public class Acceuiladmin extends javax.swing.JFrame {
         
     }//GEN-LAST:event_supprimerActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        
+        
+          String[] member = {"id_membre","num_compte","passwords","nom_membre","prenom_membre","date_naiss","num_cni","etat_civil","personne_a_contacter","genre","statut"};
+        String[] afficher = new String[11];
+        DefaultTableModel model = new DefaultTableModel(null, member);
+        
+        try {
+             Class.forName("org.postgresql.Driver");
+            connection =  DriverManager.getConnection("jdbc:postgresql://"+host+":"+port+"/"+db_name+"", ""+username+"", ""+password+"");
+            Statement adds = connection.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            ResultSet rs = adds.executeQuery("SELECT*FROM membre");
+            
+            while (rs.next()) {
+                afficher[0] = rs.getString("id_membre");
+                afficher[1] = rs.getString("num_compte");
+                afficher[2] = rs.getString("passwords");
+                afficher[3] = rs.getString("nom_membre");
+                afficher[4] = rs.getString("prenom_membre");
+                afficher[5] = rs.getString("date_naiss");
+                afficher[6] = rs.getString("num_cni");
+                afficher[7] = rs.getString("etat_civil");
+                afficher[8] = rs.getString("personne_a_contacter");
+                afficher[9] = rs.getString("genre");
+                afficher[10] = rs.getString("statut");
+                model.addRow(afficher);
+            }
+            jTable1.setModel(model);
+            connection.close();
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -808,6 +862,7 @@ public class Acceuiladmin extends javax.swing.JFrame {
     private javax.swing.JTextField genre;
     private javax.swing.JButton gestionm;
     private javax.swing.JTextField id;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;

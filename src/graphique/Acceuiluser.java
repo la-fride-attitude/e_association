@@ -19,6 +19,7 @@ public class Acceuiluser extends javax.swing.JFrame {
      Rembourssement rembourssementFrame;
      Depot depotframe; 
       Connection connectionFrame ;  
+      Consultation consultFrame;
     
     public Acceuiluser() {
         initComponents();
@@ -111,7 +112,12 @@ public class Acceuiluser extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void consultationuserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consultationuserActionPerformed
-      
+       Dimension p = Toolkit.getDefaultToolkit().getScreenSize();
+        consultFrame = new Consultation();
+        consultFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        consultFrame.setBounds(p.width/2 - 450/2, p.height/2 - 370/2, 450, 370);
+        consultFrame.setVisible(true);
+        setVisible(false);
     }//GEN-LAST:event_consultationuserActionPerformed
 
     private void pretuserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pretuserActionPerformed
